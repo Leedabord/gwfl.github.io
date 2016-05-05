@@ -4,23 +4,24 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
 <title>gwfl Org Github Starter Page</title>
-</head>
 
-<body>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
-  var gem = { name: 'Azurite', price: 2.95 };
-  var app = angular.module('gemStore', []);
-  
-  app.controller("StoreController", function() {
-    this.product = gem;
-  });
-</script>
+  <script type="text/javascript">
+    var myMess = "";
+    var gscArr = [ "match", "loc", "date", "jP", "#teams", "#players", "par", "hcp", "score", "points" ];
+  </script>
+</head>
 
+<body>
+ <div>
+   Static vars are:  {{ gscArr }} <br>  {{ myMess = today }}
+   <div ng-repeat="x in gscArr"> "ng-repeat ::" {{ x }} <br></div>
+ </div>
     <div class="product row" ng-controller="StoreController as store">
       <h3>
-        {{store.product.name}} 
+        {{store.product.name}} <br>
         <em class="pull-right">{{store.product.price | currency}}</em>
       </h3>
     </div>
