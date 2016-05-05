@@ -10,6 +10,13 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
+  var gem = { name: 'Azurite', price: 2.95 };
+  var app = angular.module('gemStore', []);
+  
+  app.controller("StoreController", function() {
+    this.product = gem;
+  });
+</script>
 
     <div class="product row" ng-controller="StoreController as store">
       <h3>
