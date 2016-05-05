@@ -16,7 +16,8 @@
 
 <body>
  <div>
-   Static vars are:  {{ gscArr }} <br>  {{ myMess = today }}
+   Static vars are:  {{gscArr}} <br>  {{myMess = today}}
+ <p>  $scope is: {{$scope.customers}} </p>
    <div ng-repeat="x in gscArr"> "ng-repeat ::" {{ x }} <br></div>
  </div>
     <div class="product row" ng-controller="StoreController as store">
