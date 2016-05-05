@@ -15,7 +15,13 @@ var text = '{"employees":[' +
 obj = JSON.parse(text);
 document.getElementById("demo").innerHTML =
 obj.employees[1].firstName + " " + obj.employees[1].lastName;
+
+function myFunction() {
+    carName = "Volvo";
+}
+
 </script>
 
+    Car Make: {{carName}}
 </body>
 </html>
