@@ -1,189 +1,126 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
 <head>
-  <meta charset="utf-8">
-  <title>jQuery UI Tabs - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( "#tabs" ).tabs();
-  });
-
-  $(function() {
-    $( "#accordion" ).accordion();
-  });
-  </script>
+  <meta charset="utf-8" />
+  <title>gwfl-BBstats</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+  <script src="app.js"></script>
 </head>
-<body>
 
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Team A</a></li>
-    <li><a href="#tabs-2">Team B</a></li>
-    <li><a href="#tabs-3">Team C</a></li>
-  </ul>
-  <div id="tabs-1">
-  <p>  Team Stats:  total win,  total score,  total f9,  total b9,  total U1 </p>
-      <p>
-    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-    suscipit faucibus urna.
-    </p>
-  </div>
-  <div id="tabs-2">
-    <p>Morbi 2.</p>
-        <p>
-    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-    suscipit faucibus urna.
-    </p>
-  </div>
-  <div id="tabs-3">
-    <p>Morbi 3.</p>
-        <p>
-    Sed non urna. .
-    </p>
+<div ng-app="app">
+  <div ng-controller="Ctrl1" ng-init="init00()">
 
-<div id="accordion">
-  <h3>Section 1</h3>
-  <div>
-    <p>
-    Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-    ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-    amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-    odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-    </p>
-  </div>
-  <h3>Section 2</h3>
-  <div>
-    <p>
-    Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-    purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-    velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-    suscipit faucibus urna.
-    </p>
-  </div>
-  <h3>Section 3</h3>
-  <div>
-    <p>
-    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
-    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
-    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
-    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
-    </p>
-    <ul>
-      <li>List item one</li>
-      <li>List item two</li>
-      <li>List item three</li>
-    </ul>
-  </div>
-  <h3>Section 4</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
-  <h3>Section 5</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
-  <h3>Section 6</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
-  <h3>Section 7</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
-  <h3>Section 8</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
-  <h3>Section 9</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
-  <h3>Section 10</h3>
-  <div>
-    <p>
-    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
-    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
-    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
-    mauris vel est.
-    </p>
-    <p>
-    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos.
-    </p>
-  </div>
+    <h2>{{name}} </h2>
+
+    <div class="row">
+      <div class="col-xs-4">
+        <h1><time>00:10:00</time></h1>
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+        <button id="clear">clear</button>
+      </div>
+      <div class="col-xs-1">
+        <h6></h6> </div>
+      <div class="col-xs-3">
+        <h3 class="btn btn-info">Redondo:</h3>
+        <br>
+        <span class="btn btn-info btn-sm">Score {{ vGH.pp }}</span>
+        <br>
+        <span class="btn btn-info btn-sm">Fouls {{ vGH.ff }}</span>
+        <span class="btn btn-info btn-sm">TO {{ vGH.tt }}</span>
+        <br>
+      </div>
+      <div class="col-xs-3">
+        <h4 class="btn btn-default">Opponent:</h4>
+        <br>
+        <span class="btn btn-default btn-sm">Score {{ vGV.pp }}</span>
+        <br>
+        <span class="btn btn-default btn-sm">Fouls {{ vGV.ff }}</span>
+        <span class="btn btn-default btn-sm">TO {{ vGV.tt }}</span>
+        <br>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    
+<div ng-repeat="xx in xxTimes(14)">
+    <div class="row" ng-show="vP[$index].onc">
+      <div class="col-xs-3">
+        <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">{{ vP[$index].Nm }} {{ vP[$index].Nu }}</a>
+        <br>
+        <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
+        <span class="pull-left badge">f: {{ vP[$index].pf }}</span>
+      </div>
+      <div class="col-xs-9">
+        <a ng-click="pTally('y2p', $index)" role="button" class="btn btn-xs btn-success">2P.y</a>
+        <a ng-click="pTally('y3p', $index)" role="button" class="btn btn-xs btn-success">3P.y</a>
+        <a ng-click="pTally('yft', $index)" role="button" class="btn btn-xs btn-success">ft.y</a>
+        <a ng-click="pTally('ast', $index)" role="button" class="btn btn-xs btn-info">Ast</a>
+        <a ng-click="pTally('stl', $index)" role="button" class="btn btn-xs btn-info">Stl</a>
+        <a ng-click="pTally('drb', $index)" role="button" class="btn btn-xs btn-success">d.Rb</a>
+        <a ng-click="pTally('pf', $index)" role="button" class="btn btn-xs btn-warning">p.F</a>
+        <br>
+        <br>
+        <a ng-click="pTally('x2p', $index)" role="button" class="btn btn-xs btn-warning">2p.x</a>
+        <a ng-click="pTally('x3p', $index)" role="button" class="btn btn-xs btn-warning">3p.x</a>
+        <a ng-click="pTally('xft', $index)" role="button" class="btn btn-xs btn-warning">ft.x</a>
+        <a ng-click="pTally('to', $index)" role="button" class="btn btn-xs btn-warning">tov</a>
+        <a ng-click="pTally('blk', $index)" role="button" class="btn btn-xs btn-info">Blk</a>
+        <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.Rb</a>
+        <a ng-click="pTally('tf', $index)" role="button" class="btn btn-xs btn-danger">t.F</a>
+        <br>
+        <br>
+      </div>
+    </div>
+</div>
+    <p></p>
+    <h5>Bench:</h5>
+<div ng-repeat="xx in xxTimes(14)">
+    <div class="row" ng-hide="vP[$index].onc">
+      <div class="col-xs-3">
+        <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"> {{vP[$index].Nm}} {{vP[$index].Nu}} </a>
+        <br>
+        <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
+        <span class="pull-left badge">f: {{ vP[$index].pf }}</span>
+      </div>
+      <div class="col-xs-9">
+        <span class="btn btn-xs btn-default">2p.y:<br> {{ vP[$index].y2p }}</span>
+        <span class="btn btn-xs btn-default">3p.y:<br> {{ vP[$index].y3p }}</span>
+        <span class="btn btn-xs btn-default">ft.y:<br> {{ vP[$index].yft }}</span>
+        <span class="btn btn-xs btn-default">ast:<br> {{ vP[$index].ast }}</span>
+        <span class="btn btn-xs btn-default">stl:<br> {{ vP[$index].stl }}</span>
+        <span class="btn btn-xs btn-default">d.Rb:<br> {{ vP[$index].drb }}</span>
+        <span class="btn btn-xs btn-default">p.F:<br> {{ vP[$index].pf }}</span>
+        <br>
+        <br>
+        <span class="btn btn-xs btn-default">2p.x:<br> {{ vP[$index].x2p }}</span>
+        <span class="btn btn-xs btn-default">3p.x:<br> {{ vP[$index].x3p }}</span>
+        <span class="btn btn-xs btn-default">ft.x:<br> {{ vP[$index].xft }}</span>
+        <span class="btn btn-xs btn-default">tov:<br> {{ vP[$index].to }}</span>
+        <span class="btn btn-xs btn-default">blk:<br> {{ vP[$index].blk }}</span>
+        <span class="btn btn-xs btn-default">o.Rb:<br> {{ vP[$index].orb }}</span>
+        <span class="btn btn-xs btn-default">t.F:<br> {{ vP[$index].tf }}</span>
+        <br>
+        <br>
+      </div>
+    </div>
 </div>
 
+    <h5> <p> </h5>
+
   </div>
+  <!-- ctrl1 -->
+
 </div>
+<!-- ngAPP -->
 
 </body>
+
 </html>
