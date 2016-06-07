@@ -159,23 +159,13 @@ function aaTimes(nn) {
     xxTimes: function(nn) {
       return aaTimes(nn);
     },
-    http: function(callback) {
-            return $timeout(function() {
-                return $http.get('players.json').then(function(jsonData) {
-                    return jsonData.data;
-                });
-            }, 30);
-        }
-//      $http.get('players.json').success(function (jsonData) {
-//        return jsonData;
-//      });
-      //  $http({
-      //    "method": "get",
-      //    "url": 'https://www.example.com/echo/json/'
-      //  });
+    http: function() {
+      $http.get('players.json').success(function(jsonData) {
+         return jsonData.data;
+      });
+    }
   };
-
-});
+});  // end gscUtils
 
 app.factory("UserService", function() {
   var users = ["Peter", "Daniel", "Nina"];
@@ -206,7 +196,77 @@ $scope.init00 = function() {
   $scope.vGV = angular.copy($scope.vGH);
 
 $scope.vP = [
-  { "Nm": "player",  "Nu": "00", "onc": false, 
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
@@ -215,72 +275,11 @@ $scope.vP = [
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
     drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    }
 ];
-
- $http.get('players.json').success(function (jsonData) {
+$http.get('players.json').success(function (jsonData) {
    $scope.vP = angular.copy(jsonData);
- });
+});
 
 };
 
