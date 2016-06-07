@@ -15,42 +15,43 @@
 
 <div ng-app="app">
   <div ng-controller="Ctrl1" ng-init="init00()">
-
-    <h2>{{name}} </h2>
-
-    <div class="row">
-      <div class="col-xs-4">
-        <h1><time>00:10:00</time></h1>
+    <h2>{{name}} <time>10:00</time> </h2>
         <button id="start">start</button>
         <button id="stop">stop</button>
         <button id="clear">clear</button>
-      </div>
-      <div class="col-xs-1">
-        <h6></h6> </div>
+        <br>
+    <div class="row">
       <div class="col-xs-3">
-        <h3 class="btn btn-info">Redondo:</h3>
+        <h4 class="btn btn-danger">Redondo</h4>
         <br>
-        <span class="btn btn-info btn-sm">Score {{ vGH.pp }}</span>
-        <br>
-        <span class="btn btn-info btn-sm">Fouls {{ vGH.ff }}</span>
-        <span class="btn btn-info btn-sm">TO {{ vGH.tt }}</span>
-        <br>
+        <h4> Score: {{ vGH.pp }}</h4>
+        <h5> Fouls: {{ vGH.ff }}</h5>
+        <!-- h6> TO: {{ vGH.tt }}</h6 -->
       </div>
       <div class="col-xs-3">
         <h4 class="btn btn-default">Opponent:</h4>
+        <h4> Score: {{ vGV.pp }}</h4>
+        <h5> Fouls: {{ vGV.ff }}</h5>
+        <!-- h6> TO: {{ vGV.tt }}</h6 -->
+      </div>
+      <div class="col-xs-2">
+        <h4 class="btn btn-default">track Opp</h4>
         <br>
-        <span class="btn btn-default btn-sm">Score {{ vGV.pp }}</span>
+        <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-xs btn-default">2P</a>
+        <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-xs btn-default">3P</a>
+        <a ng-click="pTally('vft', 0)" role="button" class="btn btn-xs btn-default">1P</a>
+        <a ng-click="pTally('vpf', 0)" role="button" class="btn btn-xs btn-default">PF</a>
         <br>
-        <span class="btn btn-default btn-sm">Fouls {{ vGV.ff }}</span>
-        <span class="btn btn-default btn-sm">TO {{ vGV.tt }}</span>
-        <br>
+      </div>
+      <div class="col-xs-3">
+        <h2> </h2>
       </div>
     </div>
 
     <br>
     <br>
     
-<div ng-repeat="xx in xxTimes(14)">
+<div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-show="vP[$index].onc">
       <div class="col-xs-3">
         <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">{{ vP[$index].Nm }} {{ vP[$index].Nu }}</a>
@@ -71,7 +72,7 @@
         <a ng-click="pTally('x2p', $index)" role="button" class="btn btn-xs btn-warning">2p.x</a>
         <a ng-click="pTally('x3p', $index)" role="button" class="btn btn-xs btn-warning">3p.x</a>
         <a ng-click="pTally('xft', $index)" role="button" class="btn btn-xs btn-warning">ft.x</a>
-        <a ng-click="pTally('to', $index)" role="button" class="btn btn-xs btn-warning">tov</a>
+        <a ng-click="pTally('tov', $index)" role="button" class="btn btn-xs btn-warning">tov</a>
         <a ng-click="pTally('blk', $index)" role="button" class="btn btn-xs btn-info">Blk</a>
         <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.Rb</a>
         <a ng-click="pTally('tf', $index)" role="button" class="btn btn-xs btn-danger">t.F</a>
@@ -82,7 +83,7 @@
 </div>
     <p></p>
     <h5>Bench:</h5>
-<div ng-repeat="xx in xxTimes(14)">
+<div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-hide="vP[$index].onc">
       <div class="col-xs-3">
         <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"> {{vP[$index].Nm}} {{vP[$index].Nu}} </a>
@@ -103,7 +104,7 @@
         <span class="btn btn-xs btn-default">2p.x:<br> {{ vP[$index].x2p }}</span>
         <span class="btn btn-xs btn-default">3p.x:<br> {{ vP[$index].x3p }}</span>
         <span class="btn btn-xs btn-default">ft.x:<br> {{ vP[$index].xft }}</span>
-        <span class="btn btn-xs btn-default">tov:<br> {{ vP[$index].to }}</span>
+        <span class="btn btn-xs btn-default">tov:<br> {{ vP[$index].tov }}</span>
         <span class="btn btn-xs btn-default">blk:<br> {{ vP[$index].blk }}</span>
         <span class="btn btn-xs btn-default">o.Rb:<br> {{ vP[$index].orb }}</span>
         <span class="btn btn-xs btn-default">t.F:<br> {{ vP[$index].tf }}</span>
