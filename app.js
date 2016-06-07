@@ -21,7 +21,7 @@ function add() {
         }
     }
     
-    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    h1.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
     timer();
 }
@@ -40,30 +40,32 @@ stop.onclick = function() {
 
 /* Clear button */
 clear.onclick = function() {
-    h1.textContent = "00:10:00";
+    h1.textContent = "10:00";
     seconds = 60; minutes = 9; hours = 0;
 };
 
 function tally00(tt, xx, s$) {
 
- vv = 0;
  switch (tt) {
   case 'y2p':
-    vv = 2;
+    s$.vP[xx].pp += 2;
+    s$.vGH.pp += 2;
     s$.vP[xx].y2p++;
     break;
   case 'x2p':
     s$.vP[xx].x2p++;
     break;
   case 'y3p':
-    vv = 3;
+    s$.vP[xx].pp += 3;
+    s$.vGH.pp += 3;
     s$.vP[xx].y3p++;
     break;
   case 'x3p':
     s$.vP[xx].x3p++;
     break;
   case 'yft':
-    vv = 1;
+    s$.vP[xx].pp++;
+    s$.vGH.pp++;
     s$.vP[xx].yft++;
     break;
   case 'xft':
@@ -84,8 +86,8 @@ function tally00(tt, xx, s$) {
   case 'orb':
     s$.vP[xx].orb++;
     break;
-  case 'to':
-    s$.vP[xx].to++;
+  case 'tov':
+    s$.vP[xx].tov++;
     break;
   case 'pf':
     s$.vP[xx].pf++;
@@ -94,13 +96,27 @@ function tally00(tt, xx, s$) {
   case 'tf':
     s$.vP[xx].tf++;
     break;
+  case 'tf':
+    s$.vP[xx].tf++;
+    break;
+  case 'tf':
+    s$.vP[xx].tf++;
+    break;
+  case 'v2p':
+    s$.vGV.pp += 2;
+    break;
+  case 'v3p':
+    s$.vGV.pp += 3;
+    break;
+  case 'vft':
+    s$.vGV.pp++;
+    break;
+  case 'vpf':
+    s$.vGV.ff++;
+    break;
   default:
     break;
  }
-
- s$.vP[xx].pp += vv;
- s$.vGH.pp += vv;
-
 }
 
 function aaTimes(nn) {
@@ -192,40 +208,86 @@ $scope.init00 = function() {
   vP00 = { pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, to: 0, blk: 0, tf: 0 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 
   };
 
-$scope.vP = [];   $scope.vPn = [
-  { "Nm": "Nathan",  "Nu": "00", "onc": false },
-  { "Nm": "Ilari",  "Nu": "2" , "onc": false  },
-  { "Nm": "Trent",  "Nu": "3" , "onc": false  },
-  { "Nm": "Kadin",  "Nu": "5" , "onc": false  },
-  { "Nm": "Devian",  "Nu": "6", "onc": false   },
-  { "Nm": "A T",  "Nu": "8"  , "onc": false },
-  { "Nm": "Bryan M",  "Nu": "11"  , "onc": false },
-  { "Nm": "Damien",  "Nu": "13"  , "onc": false },
-  { "Nm": "Aidan M",  "Nu": "13x"  , "onc": false },
-  { "Nm": "Sean",  "Nu": "14"  , "onc": false },
-  { "Nm": "Sam",  "Nu": "16", "onc": false   },
-  { "Nm": "Evan",  "Nu": "22"  , "onc": false },
-  { "Nm": "Kajh",  "Nu": "23"  , "onc": false },
-  { "Nm": "Tyler",  "Nu": "27", "onc": false   }
+$scope.vP = [
+  { "Nm": "Nathan",  "Nu": "00", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
+  { "Nm": "Ilari",  "Nu": "2" , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
+  { "Nm": "Trent",  "Nu": "3" , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
+  { "Nm": "Kadin",  "Nu": "5" , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
+  { "Nm": "Devian",  "Nu": "6", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
+  { "Nm": "A T",  "Nu": "8"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Bryan M",  "Nu": "11"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Damien",  "Nu": "13"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Aidan M",  "Nu": "13x"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Sean",  "Nu": "14"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Sam",  "Nu": "16", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
+  { "Nm": "Evan",  "Nu": "22"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Kajh",  "Nu": "23"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Tyler",  "Nu": "27", "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    }
 ];
 
-  $scope.vP.length = $scope.vPn.length;
-  for (ii = 0; ii < $scope.vPn.length; ii++) {
-    $scope.vP[ii] = angular.copy(vP00);
-    $scope.vP[ii].Nm = $scope.vPn[ii].Nm;
-    $scope.vP[ii].Nu = $scope.vPn[ii].Nu;
-    $scope.vP[ii].onc = $scope.vPn[ii].onc;
-    console.log("> vP >", ii, ":: ", $scope.vP[ii].Nm, " ", $scope.vP[ii].Nu, " ", $scope.vP[ii].onc);
-  }
-
   $http.get('players.json').success(function (jsonData) {
-    $scope.vPn = angular.copy(jsonData);
+    $scope.vP = angular.copy(jsonData);
   });
 
-  
 };
 
 $scope.pTally = function (tt, xx) {
