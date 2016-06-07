@@ -205,12 +205,6 @@ $scope.init00 = function() {
   };
   $scope.vGV = angular.copy($scope.vGH);
 
-  vP00 = { pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 
-  };
-
 $scope.vP = [
   { "Nm": "Nathan",  "Nu": "00", "onc": false, 
    pp: 0,  pf: 0,
