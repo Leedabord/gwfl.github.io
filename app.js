@@ -1,7 +1,8 @@
 var app = angular.module('app', [] );
 
-app.factory('gscUtils', function($http, $timeout) {
-var ii = 0;  var jj = 0;  var kk = 0;  var ss = "";  var aa = [];  var jsonData = [];
+app.factory('gscUtils', function($http, $interval, $timeout) {
+var ii = 0;  var jj = 0;  var kk = 0;  var ss = "";  var aa = [];  var jsonData = []; 
+var BBstatsLog = "";
 
 var h1 = document.getElementsByTagName('time')[0],
     start = document.getElementById('start'),
@@ -117,6 +118,10 @@ function tally00(tt, xx, s$) {
   default:
     break;
  }
+ s$.vP[xx].rrft = Math.round( (s$.vP[xx].yft/(s$.vP[xx].xft + s$.vP[xx].yft)) * 100);
+ s$.vP[xx].rr3p = Math.round( (s$.vP[xx].y3p/(s$.vP[xx].x3p + s$.vP[xx].y3p)) * 100);
+ s$.vP[xx].rrfg = Math.round( ((s$.vP[xx].y2p + s$.vP[xx].y3p)/(s$.vP[xx].x2p + s$.vP[xx].y2p + s$.vP[xx].x3p + s$.vP[xx].y3p)) * 100);
+
 }
 
 function aaTimes(nn) {
@@ -132,26 +137,14 @@ function aaTimes(nn) {
   return aa;
 }
 
-  function gSSii(ss, ii) {
-    var aa = [];
-    aa = ss.split(',');
-    return aa[ii];
-  }
-  function spliceSSii(ss, ii, val) {
-    var aa = [];
-    aa = ss.split(',');
-    aa[ii] = String(val);
-    ss = aa.join();
-    return ss;
-  }
-
 // return options
   return {
     init: function(s$) {
       return init00();
     },
-    match: function() {
-      return "match:: ";
+    showLog: function(s$) {
+      ss = JSON.stringify(s$.vP);
+      return ss;
     },
     tally: function(tt, xx, s$) {
       return tally00(tt, xx, s$);
@@ -164,28 +157,11 @@ function aaTimes(nn) {
         return jsonData.data;
       });
     }
-//      $http.get('players.json').success(function (jsonData) {
-//        return jsonData;
-//      });
   };
 
 });
 
-app.factory("UserService", function() {
-  var users = ["Peter", "Daniel", "Nina"];
-
-  return {
-    allU: function() {
-      return users;
-    },
-    first: function(xx) {
-      if (xx > users.length) { xx = users.length;}
-      return users[xx-1];
-    }
-  };
-});
-
-app.controller('Ctrl1', function($scope, $http, $timeout, gscUtils, UserService) {
+app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
 
 $scope.xxTimes = function(nn) {
   return gscUtils.xxTimes(nn);
@@ -199,113 +175,31 @@ $scope.init00 = function() {
   };
   $scope.vGV = angular.copy($scope.vGH);
 
-  vP00 = { pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 
-  };
-
-$scope.vP = [
-  { "Nm": "Nathan",  "Nu": "00", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "Ilari-xx",  "Nu": "2" , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
-  { "Nm": "Trent",  "Nu": "3" , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
-  { "Nm": "Kadin",  "Nu": "5" , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
-  { "Nm": "Devian",  "Nu": "6", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
-  { "Nm": "A T",  "Nu": "8"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "Bryan M",  "Nu": "11"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "Damien",  "Nu": "13"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "Aidan M",  "Nu": "13x"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "Sean",  "Nu": "14"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "Sam",  "Nu": "16", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
-  { "Nm": "Evan",  "Nu": "22"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "Kajh",  "Nu": "23"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "xxxxx",  "Nu": "99"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "xxxxx",  "Nu": "99"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "xxxxx",  "Nu": "99"  , "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
-  { "Nm": "Tyler",  "Nu": "27", "onc": false, 
-   pp: 0,  pf: 0,
-    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
-    yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    }
-];
-
+  $scope.vP = [
+    { "Nm": "xxxxx",  "Nu": "99"  , "onc": false, 
+     pp: 0,  pf: 0, rrfg: 0, rr3p: 0, rrft: 0,
+     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+     yft: 0, xft: 0, ast: 0, stl: 0, 
+     drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    }
+    ];
   $http.get('players.json').success(function (jsonData) {
     $scope.vP = angular.copy(jsonData);
   });
 
+  $scope.BBstatsLog = "";
+
 };
 
 $scope.pTally = function (tt, xx) {
-    console.log('pTally::', tt, xx, $scope.vP);
     gscUtils.tally(tt, xx, $scope);
 }; 
 
 $scope.pTgl = function(ii) {
   $scope.vP[ii].onc = !$scope.vP[ii].onc;
  };
+
+$scope.showLog = function () {
+  //  $scope.BBstatsLog = gscUtils.showLog($scope);
+}; 
 
 });  // end Ctrl1
