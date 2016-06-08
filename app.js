@@ -159,13 +159,17 @@ function aaTimes(nn) {
     xxTimes: function(nn) {
       return aaTimes(nn);
     },
-    http: function() {
+    http: function(callback) {
       $http.get('players.json').success(function(jsonData) {
-         return jsonData.data;
+        return jsonData.data;
       });
     }
+//      $http.get('players.json').success(function (jsonData) {
+//        return jsonData;
+//      });
   };
-});  // end gscUtils
+
+});
 
 app.factory("UserService", function() {
   var users = ["Peter", "Daniel", "Nina"];
@@ -195,91 +199,103 @@ $scope.init00 = function() {
   };
   $scope.vGV = angular.copy($scope.vGH);
 
+  vP00 = { pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 
+  };
+
 $scope.vP = [
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+  { "Nm": "Nathan",  "Nu": "00", "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
     drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+  { "Nm": "Ilari-xx",  "Nu": "2" , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
+  { "Nm": "Trent",  "Nu": "3" , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
+  { "Nm": "Kadin",  "Nu": "5" , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0   },
+  { "Nm": "Devian",  "Nu": "6", "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
+  { "Nm": "A T",  "Nu": "8"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Bryan M",  "Nu": "11"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Damien",  "Nu": "13"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Aidan M",  "Nu": "13x"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Sean",  "Nu": "14"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Sam",  "Nu": "16", "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    },
+  { "Nm": "Evan",  "Nu": "22"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Kajh",  "Nu": "23"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "xxxxx",  "Nu": "99"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "xxxxx",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "xxxxx",  "Nu": "99"  , "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
-    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0 },
-  { "Nm": "player",  "Nu": "00", "onc": false, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "xxxxx",  "Nu": "99"  , "onc": false, 
+   pp: 0,  pf: 0,
+    y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
+    yft: 0, xft: 0, ast: 0, stl: 0, 
+    drb: 0, orb: 0, tov: 0, blk: 0, tf: 0  },
+  { "Nm": "Tyler",  "Nu": "27", "onc": false, 
    pp: 0,  pf: 0,
     y2p: 0, x2p: 0, y3p: 0, x3p: 0, 
     yft: 0, xft: 0, ast: 0, stl: 0, 
     drb: 0, orb: 0, tov: 0, blk: 0, tf: 0    }
 ];
-$http.get('players.json').success(function (jsonData) {
-   $scope.vP = angular.copy(jsonData);
-});
+
+  $http.get('players.json').success(function (jsonData) {
+    $scope.vP = angular.copy(jsonData);
+  });
 
 };
 
