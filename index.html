@@ -13,12 +13,12 @@
   <script src="app.js"></script>
 </head>
 
-<div ng-app="app">
+<div ng-app="app" class="container">
   <div ng-controller="Ctrl1" ng-init="init00()">
     <h2>{{name}} <time>10:00</time> </h2>
         <button id="start">start</button>
         <button id="stop">stop</button>
-        <button id="clear">clear</button>
+        <button id="clear" ng-click="showLog()">clear</button>
         <br>
     <div class="row">
       <div class="col-xs-3">
@@ -57,7 +57,7 @@
         <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">{{ vP[$index].Nm }} {{ vP[$index].Nu }}</a>
         <br>
         <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
-        <span class="pull-left badge">f: {{ vP[$index].pf }}</span>
+        <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
       </div>
       <div class="col-xs-9">
         <a ng-click="pTally('y2p', $index)" role="button" class="btn btn-xs btn-success">2P.y</a>
@@ -89,7 +89,11 @@
         <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"> {{vP[$index].Nm}} {{vP[$index].Nu}} </a>
         <br>
         <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
-        <span class="pull-left badge">f: {{ vP[$index].pf }}</span>
+        <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
+        <br>
+        <span class="pull-left label label-info">fg: {{ vP[$index].rrfg }}</span>
+        <span class="pull-left label label-info">ft: {{ vP[$index].rrft }}</span>
+        <span class="pull-left label label-info">3p: {{ vP[$index].rr3p }}</span>
       </div>
       <div class="col-xs-9">
         <span class="btn btn-xs btn-default">2p.y:<br> {{ vP[$index].y2p }}</span>
@@ -115,6 +119,9 @@
 </div>
 
     <h5> <p> </h5>
+<div class="well hidden">
+  TeamStats:: {{BBstatsLog}}
+</div>
 
   </div>
   <!-- ctrl1 -->
