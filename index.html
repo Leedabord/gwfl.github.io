@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <title>gwfl-BBstats</title>
@@ -12,10 +11,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
   <script src="app.js"></script>
 </head>
-
+<body>
 <div ng-app="app" class="container">
   <div ng-controller="Ctrl1" ng-init="init00()">
-    <h2>{{name}} <time>{{minutes}}:{{seconds}}</time> </h2>
+    <h2>{{name}} <time>{{Gm.vClock}}</time> </h2>
         <a id="start" ng-click="inGame()" role="button" class="btn btn-xs btn-default">START</a>
         <a id="stop" ng-click="stopGame()" role="button" class="btn btn-xs btn-default">STOP</a>
         <a id="clear" ng-click="resetGame()" role="button" class="btn btn-xs btn-default">CLEAR</a>
@@ -56,7 +55,7 @@
     <div class="row" ng-show="vP[$index].onc">
       <div class="col-xs-3">
         <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">
-          {{ vP[$index].Nm }} {{ vP[$index].Nu }}</a>
+         {{ vP[$index].Nu }}  {{ vP[$index].Nm }}</a>
         <br>
         <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
         <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
@@ -69,7 +68,6 @@
         <a ng-click="pTally('stl', $index)" role="button" class="btn btn-xs btn-info">STL</a>
         <a ng-click="pTally('drb', $index)" role="button" class="btn btn-xs btn-success">d.RB</a>
         <a ng-click="pTally('pf', $index)" role="button" class="btn btn-xs btn-warning">p.F</a>
-    <span class="btn btn-default pull-right" id="zpT">{{zpT.t}}</span>
         <br>
         <a ng-click="pTally('x2p', $index)" role="button" class="btn btn-xs btn-warning">2p.x</a>
         <a ng-click="pTally('x3p', $index)" role="button" class="btn btn-xs btn-warning">3p.x</a>
@@ -78,6 +76,7 @@
         <a ng-click="pTally('blk', $index)" role="button" class="btn btn-xs btn-info">BLK</a>
         <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.RB</a>
         <a ng-click="pTally('tf', $index)" role="button" class="btn btn-xs btn-danger">t.F</a>
+    <span class="label label-default" id="Gm">{{Gm.t}}</span>
         <br>
         <br>
       </div>
@@ -88,7 +87,7 @@
 <div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-hide="vP[$index].onc">
       <div class="col-xs-3">
-        <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"> {{vP[$index].Nm}} {{vP[$index].Nu}} </a>
+        <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"> {{vP[$index].Nu}} {{vP[$index].Nm}} </a>
         <br>
         <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
         <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
@@ -132,5 +131,3 @@
 <!-- ngAPP -->
 
 </body>
-
-</html>
