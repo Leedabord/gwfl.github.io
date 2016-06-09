@@ -9,18 +9,33 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
   <script src="app.js"></script>
 </head>
 
 <div ng-app="app" class="container">
   <div ng-controller="Ctrl1" ng-init="init00()">
-    <h2>{{name}} <time>10:00</time> </h2>
-        <button id="start">start</button>
-        <button id="stop">stop</button>
-        <button id="clear" ng-click="showLog()">clear</button>
+    <h2>{{name}} <time>{{minutes}}:{{seconds}}</time> </h2>
+        <a id="start" ng-click="inGame()" role="button" class="btn btn-xs btn-default">START</a>
+        <a id="stop" ng-click="stopGame()" role="button" class="btn btn-xs btn-default">STOP</a>
+        <a id="clear" ng-click="resetGame()" role="button" class="btn btn-xs btn-default">CLEAR</a>
         <br>
     <div class="row">
+      <div class="col-xs-2">
+        <br>
+        <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-xs btn-default">2P</a>
+        <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-xs btn-default">3P</a>
+        <a ng-click="pTally('vft', 0)" role="button" class="btn btn-xs btn-default">1P</a>
+        <a ng-click="pTally('vpf', 0)" role="button" class="btn btn-xs btn-default">PF</a>
+        <br>
+        <h4 class="btn btn-default btn-xs">track Opp</h4>
+      </div>
+      <div class="col-xs-3">
+        <h4 class="btn btn-default">Opponent:</h4>
+        <h4> Score: {{ vGV.pp }}</h4>
+        <h5> Fouls: {{ vGV.ff }}</h5>
+        <!-- h6> TO: {{ vGV.tt }}</h6 -->
+      </div>
       <div class="col-xs-3">
         <h4 class="btn btn-danger">Redondo</h4>
         <br>
@@ -29,32 +44,19 @@
         <!-- h6> TO: {{ vGH.tt }}</h6 -->
       </div>
       <div class="col-xs-3">
-        <h4 class="btn btn-default">Opponent:</h4>
-        <h4> Score: {{ vGV.pp }}</h4>
-        <h5> Fouls: {{ vGV.ff }}</h5>
-        <!-- h6> TO: {{ vGV.tt }}</h6 -->
-      </div>
-      <div class="col-xs-2">
-        <h4 class="btn btn-default">track Opp</h4>
-        <br>
-        <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-xs btn-default">2P</a>
-        <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-xs btn-default">3P</a>
-        <a ng-click="pTally('vft', 0)" role="button" class="btn btn-xs btn-default">1P</a>
-        <a ng-click="pTally('vpf', 0)" role="button" class="btn btn-xs btn-default">PF</a>
-        <br>
-      </div>
-      <div class="col-xs-3">
         <h2> </h2>
       </div>
     </div>
 
     <br>
+    <br><span class="btn btn-sm btn-success">On Court :</span>
     <br>
     
 <div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-show="vP[$index].onc">
       <div class="col-xs-3">
-        <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">{{ vP[$index].Nm }} {{ vP[$index].Nu }}</a>
+        <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">
+          {{ vP[$index].Nm }} {{ vP[$index].Nu }}</a>
         <br>
         <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
         <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
@@ -62,27 +64,27 @@
       <div class="col-xs-9">
         <a ng-click="pTally('y2p', $index)" role="button" class="btn btn-xs btn-success">2P.y</a>
         <a ng-click="pTally('y3p', $index)" role="button" class="btn btn-xs btn-success">3P.y</a>
-        <a ng-click="pTally('yft', $index)" role="button" class="btn btn-xs btn-success">ft.y</a>
-        <a ng-click="pTally('ast', $index)" role="button" class="btn btn-xs btn-info">Ast</a>
-        <a ng-click="pTally('stl', $index)" role="button" class="btn btn-xs btn-info">Stl</a>
-        <a ng-click="pTally('drb', $index)" role="button" class="btn btn-xs btn-success">d.Rb</a>
+        <a ng-click="pTally('yft', $index)" role="button" class="btn btn-xs btn-success">FT.y</a>
+        <a ng-click="pTally('ast', $index)" role="button" class="btn btn-xs btn-info">AST</a>
+        <a ng-click="pTally('stl', $index)" role="button" class="btn btn-xs btn-info">STL</a>
+        <a ng-click="pTally('drb', $index)" role="button" class="btn btn-xs btn-success">d.RB</a>
         <a ng-click="pTally('pf', $index)" role="button" class="btn btn-xs btn-warning">p.F</a>
-        <br>
+    <span class="btn btn-default pull-right" id="zpT">{{zpT.t}}</span>
         <br>
         <a ng-click="pTally('x2p', $index)" role="button" class="btn btn-xs btn-warning">2p.x</a>
         <a ng-click="pTally('x3p', $index)" role="button" class="btn btn-xs btn-warning">3p.x</a>
         <a ng-click="pTally('xft', $index)" role="button" class="btn btn-xs btn-warning">ft.x</a>
-        <a ng-click="pTally('tov', $index)" role="button" class="btn btn-xs btn-warning">tov</a>
-        <a ng-click="pTally('blk', $index)" role="button" class="btn btn-xs btn-info">Blk</a>
-        <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.Rb</a>
+        <a ng-click="pTally('tov', $index)" role="button" class="btn btn-xs btn-warning">TOV</a>
+        <a ng-click="pTally('blk', $index)" role="button" class="btn btn-xs btn-info">BLK</a>
+        <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.RB</a>
         <a ng-click="pTally('tf', $index)" role="button" class="btn btn-xs btn-danger">t.F</a>
         <br>
         <br>
       </div>
     </div>
 </div>
-    <p></p>
-    <h5>Bench:</h5>
+    <br><br>
+    <h5 class="label label-warning">Bench :</h5><br><br>
 <div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-hide="vP[$index].onc">
       <div class="col-xs-3">
