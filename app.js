@@ -196,7 +196,7 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
   };
 
   $scope.showLog = function() {
-    //  $scope.BBstatsLog = gscUtils.showLog($scope);
+    $scope.BBstatsLog = gscUtils.showLog($scope);
   };
 
   var gameClock;
@@ -205,17 +205,6 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
     $scope.Gm.vClock = String($scope.minutes) + ":";
     if ($scope.seconds < 10)  $scope.Gm.vClock += "0";  
     $scope.Gm.vClock += String($scope.seconds);  
-  };
-  $scope.inGame = function() {
-    if ( angular.isDefined(gameClock) ) return;  // skip if clock is already running
-    gameClock = $interval(function() {
-      $scope.seconds--;
-      if ($scope.seconds < 0) {
-        $scope.minutes--;
-        $scope.seconds = 59;
-      }
-      vClock();
-    }, 1000);
   };
   $scope.stopGame = function() {
     if (angular.isDefined(gameClock)) {
@@ -233,5 +222,19 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
     // Make sure that the interval is destroyed too
     $scope.stopGame();
   });
+  $scope.inGame = function() {
+    if ( angular.isDefined(gameClock) ) return;  // skip if clock is already running
+    gameClock = $interval(function() {
+      $scope.seconds--;
+      if ($scope.seconds < 0) {
+        $scope.minutes--;
+        $scope.seconds = 59;
+      }
+      vClock();
+      if (($scope.minutes < 1) && ($scope.seconds <= 0)) {
+        $scope.stopGame();
+      }
+    }, 1000);
+  };
 
 }); // end Ctrl1
