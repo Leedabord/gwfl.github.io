@@ -5,12 +5,12 @@ app.factory('gscUtils', function($http, $interval, $timeout) {
 
   function tally00(tt, xx, s$) {
 
-    if (s$.zpT.f) {
-      s$.zpT.t = "//";
+    if (s$.Gm.f) {
+      s$.Gm.t = "/";
     } else {
-      s$.zpT.t = "||";
+      s$.Gm.t = "|";
     }
-    s$.zpT.f = !s$.zpT.f; // just a blip
+    s$.Gm.f = !s$.Gm.f; // just a blip
 
     switch (tt) {
       case 'y2p':
@@ -138,6 +138,12 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
 
   $scope.init00 = function() {
     $scope.name = 'Game In Progress:';
+    $scope.BBstatsLog = "";
+    $scope.Gm = {
+      clockMM: 0, clockSS: 0, vClock: "10:00",
+      f: true,
+      t: "|"
+    };
 
     $scope.vGH = {
       pp: 0,
@@ -173,12 +179,6 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
       $scope.vP = angular.copy(jsonData);
     });
 
-    $scope.BBstatsLog = "";
-    $scope.zpT = {
-      f: true,
-      t: "||"
-    };
-
   };
 
   $scope.pTally = function(tt, xx) {
@@ -187,6 +187,12 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
 
   $scope.pTgl = function(ii) {
     $scope.vP[ii].onc = !$scope.vP[ii].onc;
+    if ($scope.vP[ii].onc) {
+      $scope.vP[ii].inG = $scope.minutes * 60 + $scope.seconds;
+     } else {
+      $scope.vP[ii].outG =  $scope.minutes * 60 + $scope.seconds;
+      $scope.vP[ii].totPss += $scope.vP[ii].inG - $scope.vP[ii].outG;
+    }
   };
 
   $scope.showLog = function() {
@@ -195,31 +201,34 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
 
   var gameClock;
   $scope.minutes = 10;  $scope.seconds = 0;
+  vClock = function() {
+    $scope.Gm.vClock = String($scope.minutes) + ":";
+    if ($scope.seconds < 10)  $scope.Gm.vClock += "0";  
+    $scope.Gm.vClock += String($scope.seconds);  
+  };
   $scope.inGame = function() {
-  // Don't start a new clock if already running
-  if ( angular.isDefined(gameClock) ) return;
+    if ( angular.isDefined(gameClock) ) return;  // skip if clock is already running
     gameClock = $interval(function() {
       $scope.seconds--;
       if ($scope.seconds < 0) {
         $scope.minutes--;
         $scope.seconds = 59;
       }
+      vClock();
     }, 1000);
   };
-
   $scope.stopGame = function() {
     if (angular.isDefined(gameClock)) {
       $interval.cancel(gameClock);
       gameClock = undefined;
     }
   };
-
   $scope.resetGame = function() {
     $scope.stopGame();
     $scope.minutes = 10;
     $scope.seconds = 0;
+    vClock();
   };
-
   $scope.$on('$destroy', function() {
     // Make sure that the interval is destroyed too
     $scope.stopGame();
