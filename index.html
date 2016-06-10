@@ -14,26 +14,23 @@
 <body>
 <div ng-app="app" class="container">
   <div ng-controller="Ctrl1" ng-init="init00()">
-    <h2>{{name}} <time>{{Gm.vClock}}</time> </h2>
-        <a id="start" ng-click="inGame()" role="button" class="btn btn-xs btn-default">START</a>
+    <h2>{{name}} <br>
+&nbsp;&nbsp;&nbsp;&nbsp;        <a id="start" ng-click="inGame()" role="button" class="btn btn-xs btn-default">START</a>
         <a id="stop" ng-click="stopGame()" role="button" class="btn btn-xs btn-default">STOP</a>
         <a id="clear" ng-click="resetGame()" role="button" class="btn btn-xs btn-default">CLEAR</a>
-        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;  <time>{{Gm.vClock}}</time>   </h2>  
     <div class="row">
       <div class="col-xs-2">
         <br>
-        <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-xs btn-default">2P</a>
-        <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-xs btn-default">3P</a>
-        <a ng-click="pTally('vft', 0)" role="button" class="btn btn-xs btn-default">1P</a>
-        <a ng-click="pTally('vpf', 0)" role="button" class="btn btn-xs btn-default">PF</a>
-        <br>
-        <h4 class="btn btn-default btn-xs">track Opp</h4>
       </div>
       <div class="col-xs-3">
         <h4 class="btn btn-default">Opponent:</h4>
         <h4> Score: {{ vGV.pp }}</h4>
         <h5> Fouls: {{ vGV.ff }}</h5>
         <!-- h6> TO: {{ vGV.tt }}</h6 -->
+      </div>
+      <div class="col-xs-2">
+        <br>
       </div>
       <div class="col-xs-3">
         <h4 class="btn btn-danger">Redondo</h4>
@@ -42,15 +39,15 @@
         <h5> Fouls: {{ vGH.ff }}</h5>
         <!-- h6> TO: {{ vGH.tt }}</h6 -->
       </div>
-      <div class="col-xs-3">
-        <h2> </h2>
-      </div>
     </div>
 
-    <br>
     <br><span class="btn btn-sm btn-success">On Court :</span>
-    <br>
-    
+&nbsp;&nbsp;&nbsp;&nbsp; <span class="label label-default">track Opp</span>
+&nbsp;&nbsp; <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-xs btn-default">2P</a>
+&nbsp;&nbsp; <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-xs btn-default">3P</a>
+&nbsp;&nbsp; <a ng-click="pTally('vft', 0)" role="button" class="btn btn-xs btn-default">1P</a>
+&nbsp;&nbsp; <a ng-click="pTally('vpf', 0)" role="button" class="btn btn-xs btn-default">PF</a>
+    <br>    <br>
 <div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-show="vP[$index].onc">
       <div class="col-xs-3">
@@ -131,3 +128,5 @@
 <!-- ngAPP -->
 
 </body>
+
+</html>
