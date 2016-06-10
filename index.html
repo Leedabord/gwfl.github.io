@@ -101,7 +101,7 @@
         <span class="pull-left label label-info">ft: {{ vP[$index].rrft }}</span>
         <span class="pull-left label label-info">3p: {{ vP[$index].rr3p }}</span>
         <br>
-        <span class="pull-left label label-default">{{ Math.trunc(vP[$index].totPss / 60) }}: {{ vP[$index].totPss % 60 }}</span>
+        <span class="pull-left label label-default">{{ vClock(vP[$index].totPss) }}</span>
       </div>
       <div class="col-xs-9">
         <span class="btn btn-xs btn-default">2p.y:<br> {{ vP[$index].y2p }}</span>
