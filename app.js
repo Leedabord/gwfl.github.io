@@ -1,7 +1,13 @@
 var app = angular.module('app', ['ngAnimate']);
 
-app.factory('gscUtils', function($http, $interval, $timeout) {
-  var ii = 0, jj = 0, kk = 0, ss = "", aa = [], jsonData = [], BBstatsLog = "", gameClock = "";
+app.factory('Utils00', function($http, $interval) {
+  var ii = 0,
+    jj = 0,
+    kk = 0,
+    ss = "",
+    aa = [],
+    jsonData = [],
+    BBstatsLog = "";
 
   function tally00(tt, xx, s$) {
 
@@ -128,83 +134,107 @@ app.factory('gscUtils', function($http, $interval, $timeout) {
     }
   };
 
-});
+}); // end service Utils00
 
-app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
+app.controller('Ctrl1', function($scope, $http, $interval, Utils00) {
+  $scope.navM00 = false;
+  $scope.Gm = {
+    clockSS: 0,
+    vClock: "00:00",
+    pMax: 10,
+    f: true,
+    e: false,
+    inG: false,
+    t: "|"
+  };
+  $scope.BBstatsLog = "";
+  $scope.vGH = {
+    pp: 0,
+    ff: 0,
+    tt: 0
+  };
+  $scope.vGV = angular.copy($scope.vGH);
+  $scope.vP = [{
+    "Nm": "xxxxx",
+    "Nu": "99",
+    "onc": false,
+    pp: 0,
+    pf: 0,
+    rrfg: 0,
+    rr3p: 0,
+    rrft: 0,
+    inG: 0,
+    outG: 0,
+    totPss: 0,
+    y2p: 0,
+    x2p: 0,
+    y3p: 0,
+    x3p: 0,
+    yft: 0,
+    xft: 0,
+    ast: 0,
+    stl: 0,
+    drb: 0,
+    orb: 0,
+    tov: 0,
+    blk: 0,
+    tf: 0
+  }];
+  $http.get('players.json').success(function(jsonData) {
+    $scope.vP = angular.copy(jsonData);
+  });
 
   $scope.xxTimes = function(nn) {
-    return gscUtils.xxTimes(nn);
+    return Utils00.xxTimes(nn);
   };
 
-  $scope.init00 = function() {
-    $scope.name = 'Game In Progress:';
-    $scope.BBstatsLog = "";
-    $scope.Gm = {
-      clockMM: 0, clockSS: 0, vClock: "10:00",
-      f: true,
-      t: "|"
-    };
-
-    $scope.vGH = {
-      pp: 0,
-      ff: 0,
-      tt: 0
-    };
-    $scope.vGV = angular.copy($scope.vGH);
-
-    $scope.vP = [{
-      "Nm": "xxxxx",
-      "Nu": "99",
-      "onc": false,
-      pp: 0,
-      pf: 0,
-      rrfg: 0,
-      rr3p: 0,
-      rrft: 0,
-      y2p: 0,
-      x2p: 0,
-      y3p: 0,
-      x3p: 0,
-      yft: 0,
-      xft: 0,
-      ast: 0,
-      stl: 0,
-      drb: 0,
-      orb: 0,
-      tov: 0,
-      blk: 0,
-      tf: 0
-    }];
-    $http.get('players.json').success(function(jsonData) {
-      $scope.vP = angular.copy(jsonData);
-    });
-
+  $scope.showLog = function() {
+    $scope.Gm.e = true;
+    $scope.BBstatsLog = Utils00.showLog($scope);
   };
-
   $scope.pTally = function(tt, xx) {
-    gscUtils.tally(tt, xx, $scope);
+    Utils00.tally(tt, xx, $scope);
   };
 
+  $scope.menuTgl = function(mm) {
+    $scope.navM00 = !$scope.navM00;
+    switch (mm) {
+      case 'm1':
+        $scope.showLog();
+        angular.element('#mainM02').modal({
+          keyboard: false
+        });
+        break;
+      case 'm2':
+        angular.element('#mainM01').modal({
+          keyboard: false
+        });
+        break;
+      default:
+        break;
+    }
+  };
   $scope.pTgl = function(ii) {
     $scope.vP[ii].onc = !$scope.vP[ii].onc;
     if ($scope.vP[ii].onc) {
-      $scope.vP[ii].inG = $scope.minutes * 60 + $scope.seconds;
-     } else {
-      $scope.vP[ii].outG =  $scope.minutes * 60 + $scope.seconds;
+      $scope.vP[ii].inG = $scope.Gm.clockSS;
+    } else {
+      $scope.vP[ii].outG = $scope.Gm.clockSS;
       $scope.vP[ii].totPss += $scope.vP[ii].inG - $scope.vP[ii].outG;
     }
   };
 
-  $scope.showLog = function() {
-    $scope.BBstatsLog = gscUtils.showLog($scope);
-  };
-
+  // Game Clock - track in seconds;  display min:sec
   var gameClock;
-  $scope.minutes = 10;  $scope.seconds = 0;
-  vClock = function() {
-    $scope.Gm.vClock = String($scope.minutes) + ":";
-    if ($scope.seconds < 10)  $scope.Gm.vClock += "0";  
-    $scope.Gm.vClock += String($scope.seconds);  
+  $scope.vClock = function(sec) {
+    var ss = ":";
+    ss = String(Math.trunc(sec / 60)) + ":";
+    sec = sec % 60;
+    if (sec < 10) {
+      ss += "0";
+    }
+    ss += String(sec);
+    return ss;
   };
   $scope.stopGame = function() {
     if (angular.isDefined(gameClock)) {
@@ -214,27 +244,22 @@ app.controller('Ctrl1', function($scope, $http, $interval, $timeout, gscUtils) {
   };
   $scope.resetGame = function() {
     $scope.stopGame();
-    $scope.minutes = 10;
-    $scope.seconds = 0;
-    vClock();
+    $scope.Gm.clockSS = $scope.Gm.pMax * 60;
+    $scope.Gm.vClock = $scope.vClock($scope.Gm.clockSS);
   };
   $scope.$on('$destroy', function() {
     // Make sure that the interval is destroyed too
     $scope.stopGame();
   });
   $scope.inGame = function() {
-    if ( angular.isDefined(gameClock) ) return;  // skip if clock is already running
+    if (angular.isDefined(gameClock)) return; // skip if clock is already running
     gameClock = $interval(function() {
-      $scope.seconds--;
-      if ($scope.seconds < 0) {
-        $scope.minutes--;
-        $scope.seconds = 59;
-      }
-      vClock();
-      if (($scope.minutes < 1) && ($scope.seconds <= 0)) {
+      $scope.Gm.clockSS--;
+      if ($scope.Gm.clockSS <= 0) {
         $scope.stopGame();
       }
+      $scope.Gm.vClock = $scope.vClock($scope.Gm.clockSS);
     }, 1000);
-  };
+  }; // end inGame
 
 }); // end Ctrl1
