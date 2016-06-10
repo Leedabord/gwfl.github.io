@@ -12,49 +12,55 @@
   <script src="app.js"></script>
 </head>
 <body>
-<div ng-app="app" class="container">
-  <div ng-controller="Ctrl1" ng-init="init00()">
-    <h2 class="well">{{name}} &nbsp;&nbsp;&nbsp;  {{Gm.vClock}} <br>
-&nbsp;        <a id="start" ng-click="inGame()" role="button" class="btn btn-xs btn-default">START</a>
-    &nbsp;&nbsp;    <a id="stop" ng-click="stopGame()" role="button" class="btn btn-xs btn-default">STOP</a>
-    &nbsp;&nbsp;    <a id="clear" ng-click="resetGame()" role="button" class="btn btn-xs btn-default">CLEAR</a>
-</h2>
+<div ng-app="app" class="container" ng-controller="Ctrl1" ng-init="resetGame()">
+
+  <!-- nav -->
+  <nav class="navbar-inverse navbar-fixed-top">
+    <a ng-click="menuTgl('m00')" role="button" class="pull-left navbar-brand col-xs-1 btn btn-sm"><i class="glyphicon glyphicon-menu-hamburger"></i> </a>
+    <span class="col-xs-7 navbar-brand">BB Game Stats </span>
+    <span class="pull-right btn btn-lg btn-default">{{Gm.vClock}}</span>
+  </nav>
+    <div id="navM00" ng-show="navM00" class="navbar-inverse">
+      <ul class="nav">
+        <li> <a ng-click="menuTgl('m1')" role="button" class="navbar-brand btn btn-xs"><i class="glyphicon glyphicon-th"></i> Show Stats </a></li>
+        <li> <a ng-click="menuTgl('m2')" role="button" class="navbar-brand btn btn-xs"><i class="glyphicon glyphicon-cog"></i> Setup </a></li>
+      </ul>
+    </div>
+    <div id="mainDiv1">
     <div class="row">
-      <div class="col-xs-1">
-        <br>
-      </div>
+    <a id="clear" ng-click="resetGame()" role="button" class="pull-right btn btn-xs btn-default">CLEAR</a>
+    <a id="stop" ng-click="stopGame()" role="button" class="pull-right btn btn-xs btn-danger">STOP</a>    
+    <a id="start" ng-click="inGame()" role="button" class="pull-right btn btn-xs btn-success">START</a>
+    </div>
+<br>
+    <div class="row">
       <div class="col-xs-3">
-        <h4 class="btn btn-danger">Redondo</h4>
-        <br>
-        <h4> Score: {{ vGH.pp }}</h4>
-        <h5> Fouls: {{ vGH.ff }}</h5>
-        <!-- h6> TO: {{ vGH.tt }}</h6 -->
-      </div>
-      <div class="col-xs-1">
-        <br>
-      </div>
-      <div class="col-xs-3">
-        <h4 class="btn btn-default">Opponent:</h4>
-        <h4> Score: {{ vGV.pp }}</h4>
-        <h5> Fouls: {{ vGV.ff }}</h5>
+        <span class="label label-default">Opponent</span>
+        <span class="btn btn-default btn-lg">{{vGV.pp}}</span>
         <!-- h6> TO: {{ vGV.tt }}</h6 -->
+<br><br>
+<a ng-click="pTally('v2p', 0)" role="button" class="btn btn-xs btn-default">2P</a>
+<a ng-click="pTally('v3p', 0)" role="button" class="btn btn-xs btn-default">3P</a>
+<a ng-click="pTally('vft', 0)" role="button" class="btn btn-xs btn-default">1P</a>
+      </div>
+      <div class="col-xs-1">
+        <p>
       </div>
       <div class="col-xs-3">
-&nbsp;&nbsp; <span class="label label-default">track Opp</span>
-<br><br>&nbsp;&nbsp; <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-xs btn-default">2P</a>
-&nbsp;&nbsp; <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-xs btn-default">3P</a>
-<br><br>&nbsp;&nbsp; <a ng-click="pTally('vft', 0)" role="button" class="btn btn-xs btn-default">1P</a>
-&nbsp;&nbsp; <a ng-click="pTally('vpf', 0)" role="button" class="btn btn-xs btn-default">PF</a>
+        <span class="label label-danger">&nbsp; Redondo &nbsp; </span>
+        <span class="btn btn-danger btn-lg">{{vGH.pp}}</span>
+        <!-- Fouls: <span class="btn btn-default btn-xs">{{vGH.ff}}</span> -->
       </div>
     </div>
-
+    </div>
+    <!-- end nav -->
     <br><span class="label label-success">On Court :</span>
     <br>    <br>
   <div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-show="vP[$index].onc">
       <div class="col-xs-3">
         <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">
-         {{ vP[$index].Nu }}  {{ vP[$index].Nm }}</a>
+<i class="glyphicon glyphicon-menu-down"></i>         {{ vP[$index].Nu }}  {{ vP[$index].Nm }} </a>
         <br>
         <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
         <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
@@ -86,7 +92,7 @@
 <div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-hide="vP[$index].onc">
       <div class="col-xs-3">
-        <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"> {{vP[$index].Nu}} {{vP[$index].Nm}} </a>
+        <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}} </a>
         <br>
         <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
         <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
@@ -94,6 +100,8 @@
         <span class="pull-left label label-info">fg: {{ vP[$index].rrfg }}</span>
         <span class="pull-left label label-info">ft: {{ vP[$index].rrft }}</span>
         <span class="pull-left label label-info">3p: {{ vP[$index].rr3p }}</span>
+        <br>
+        <span class="pull-left label label-default">{{ Math.trunc(vP[$index].totPss / 60) }}: {{ vP[$index].totPss % 60 }}</span>
       </div>
       <div class="col-xs-9">
         <span class="btn btn-xs btn-default">2p.y:<br> {{ vP[$index].y2p }}</span>
@@ -118,15 +126,52 @@
     </div>
 </div>
 
-    <h5> <p> </h5>
-<div class="well" ng-show="Gm.e">
-  TeamStats:: {{BBstatsLog}}
-</div>
-
+<!-- Modal -->
+    <div class="modal fade" id="mainM01" tabindex="-1" role="dialog" aria-labelledby="mainM01Lbl">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="mainM01Lbl">Setup:</h4>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-xs-6">
+                    <span class="label label-default">Period Minutes:</span>
+                    <input class="form-control col-xs-4" ng-model="Gm.pMax" type="number" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="pull-right col-xs-2 btn btn-primary btn-xs" data-dismiss="modal" ng-Click="resetGame()">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Modal -->
+<!-- Modal -->
+    <div class="modal fade" id="mainM02" tabindex="-1" role="dialog" aria-labelledby="mainM02Lbl">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="mainM02Lbl">Summary:</h4>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+            <h6> </h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Modal -->
   </div>
   <!-- ctrl1 -->
-
-</div>
 <!-- ngAPP -->
 
 </body>
