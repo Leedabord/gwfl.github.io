@@ -1,1 +1,10 @@
-/* put your css styles here */
+#mainDiv1 {
+  margin-top: 54px;
+}
+#navM00 {
+  z-index: 9999;
+  position: fixed;
+  width: 160px;
+  margin-top: 50px; 
+  margin-left: -16px
+}
