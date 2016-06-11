@@ -18,13 +18,10 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <a ng-click="menuTgl('m00')" role="button" class="pull-left navbar-brand col-xs-1 btn btn-sm"><i class="glyphicon glyphicon-menu-hamburger"></i> </a>
     <span class="col-xs-1 navbar-brand"> </span>
-    <span class="btn btn-default navbar-brand">{{vGV.pp}}</span>
-    <span class="col-xs-1 navbar-brand"> </span>
-    <span class="col-xs-2 navbar-brand">Game Stats </span>
-    <span class="col-xs-1 navbar-brand"> </span>
-    <span class="btn btn-danger navbar-brand">{{vGH.pp}}</span>
-    <span class="col-xs-1 navbar-brand"> </span>
-    <span class="btn btn-default navbar-brand">{{Gm.vClock}}</span>
+    <span class="col-xs-5 navbar-brand">BB Stats</span>
+    <span class="btn btn-danger btn-lg">{{vGH.pp}}</span>
+    <span class="col-xs-2 navbar-brand"> </span>
+    <span class="btn btn-default btn-lg">{{vGV.pp}}</span>
   </nav>
   <div id="navM00" ng-show="navM00" class="navbar-inverse">
     <ul class="nav">
@@ -33,20 +30,24 @@
     </ul>
   </div>
   <div id="mainDiv1">
-    <br>
     <div class="row">
-    <a ng-click="pTally('v2p', 0)" role="button" class="pull-left btn btn-sm btn-default">2P</a>
-    <a ng-click="pTally('v3p', 0)" role="button" class="pull-left btn btn-sm btn-default">3P</a>
-    <a ng-click="pTally('vft', 0)" role="button" class="pull-left btn btn-sm btn-default">1P</a>
-    <span class="col-xs-4 navbar-brand"> </span>
+    <span class="col-xs-1 navbar-brand"> </span>
+    <span class="btn btn-default navbar-brand">{{Gm.vClock}}</span>
+    <span class="col-xs-3 navbar-brand"> </span>
+    <span class="label label-default">track Opponent</span><br>
+    <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-sm btn-default">2P</a>
+    <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-sm btn-default">3P</a>
+    <a ng-click="pTally('vft', 0)" role="button" class="btn btn-sm btn-default">1P</a>
+    </div>
+    <div class="row">
     <a id="start" ng-click="inGame()" role="button" class=" btn btn-xs btn-success">START</a>
     <a id="stop" ng-click="stopGame()" role="button" class=" btn btn-xs btn-danger">STOP</a>    
     <a id="clear" ng-click="resetGame()" role="button" class=" btn btn-xs btn-default">CLEAR</a>
     </div>
   </div>
     <!-- end nav mainDiv1 -->
-    <br><span class="label label-success">On Court :</span>
-    <br>    <br>
+  <br><span class="label label-success">On Court :</span>
+  <br>
   <div ng-repeat="xx in xxTimes(vP.length)">
     <div class="row" ng-show="vP[$index].onc">
       <div class="col-xs-3">
