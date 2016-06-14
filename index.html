@@ -1,124 +1,118 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8"  name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
   <title>gwfl-BBstats</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>  
   <script src="app.js"></script>
 </head>
-<body>
-<div ng-app="app" class="container" ng-controller="Ctrl1" ng-init="resetGame()">
 
-  <!-- nav -->
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <a ng-click="menuTgl('m00')" role="button" class="pull-left navbar-brand col-xs-1 btn btn-sm"><i class="glyphicon glyphicon-menu-hamburger"></i> </a>
-    <span class="col-xs-1 navbar-brand"> </span>
-    <span class="col-xs-5 navbar-brand">BB Stats</span>
-    <span class="btn btn-danger btn-lg">{{vGH.pp}}</span>
-    <span class="col-xs-2 navbar-brand"> </span>
-    <span class="btn btn-default btn-lg">{{vGV.pp}}</span>
-  </nav>
-  <div id="navM00" ng-show="navM00" class="navbar-inverse">
-    <ul class="nav">
-      <li> <a ng-click="menuTgl('m1')" role="button" class="navbar-brand btn btn-xs"><i class="glyphicon glyphicon-th"></i> Show Stats </a></li>
-      <li> <a ng-click="menuTgl('m2')" role="button" class="navbar-brand btn btn-xs"><i class="glyphicon glyphicon-cog"></i> Setup </a></li>
-    </ul>
-  </div>
-  <div id="mainDiv1">
-    <div class="row">
-    <span class="col-xs-1 navbar-brand"> </span>
-    <span class="btn btn-default navbar-brand">{{Gm.vClock}}</span>
-    <span class="col-xs-3 navbar-brand"> </span>
-    <span class="label label-default">track Opponent</span><br>
-    <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-sm btn-default">2P</a>
-    <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-sm btn-default">3P</a>
-    <a ng-click="pTally('vft', 0)" role="button" class="btn btn-sm btn-default">1P</a>
+<body ng-app="app">
+  <div ng-controller="Ctrl1" ng-init="resetGame()" >
+
+    <!-- nav -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <a role="button" class="pull-left navbar-toggle nav btn btn-lg" data-toggle="collapse" data-target="#myNavbar">
+          <i class="glyphicon glyphicon-menu-hamburger"></i></a>
+        <span class="col-xs-2 navbar-brand"> </span>
+        <span class="navbar-brand">Game Stats </span>
+        <span class="col-xs-2 navbar-brand"> </span>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-left">
+        <li data-toggle="collapse" data-target="#myNavbar"> <a ng-click="menuTgl('m1')" role="button" ><i class="glyphicon glyphicon-th"></i> Show Stats </a></li>
+        <li data-toggle="collapse" data-target="#myNavbar"> <a ng-click="menuTgl('m2')" role="button" ><i class="glyphicon glyphicon-cog"></i> Setup </a></li>
+      </ul>
+      </div>
+    </nav>  
+    <div id="mainDiv1" class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <h6>Redondo: <span class="btn btn-lg btn-danger">{{vGH.pp}}</span></h6></div>
+        <div class="col-sm-4">
+          <h6>Opponent: <span class="btn btn-lg btn-default">{{vGV.pp}}</span></h6>
+          <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-sm btn-default">2P</a>
+          <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-sm btn-default">3P</a>
+          <a ng-click="pTally('vft', 0)" role="button" class="btn btn-sm btn-default">1P</a>
+        </div>
+        <div class="col-sm-4">
+        <span class="pull-right btn btn-lg navbar-default">{{Gm.vClock}}</span>
+<br><br><br>      <a id="clear" ng-click="resetGame()" role="button" class="pull-right btn btn-xs btn-default">CLEAR</a>
+      <a id="stop" ng-click="stopGame()" role="button" class="pull-right btn btn-xs btn-danger">STOP</a>
+      <a id="start" ng-click="inGame()" role="button" class="pull-right btn btn-xs btn-success">START</a>
+        </div>
+      </div>
     </div>
-    <div class="row">
-    <a id="start" ng-click="inGame()" role="button" class=" btn btn-xs btn-success">START</a>
-    <a id="stop" ng-click="stopGame()" role="button" class=" btn btn-xs btn-danger">STOP</a>    
-    <a id="clear" ng-click="resetGame()" role="button" class=" btn btn-xs btn-default">CLEAR</a>
-    </div>
-  </div>
     <!-- end nav mainDiv1 -->
-  <br><span class="label label-success">On Court :</span>
-  <br>
-  <div ng-repeat="xx in xxTimes(vP.length)">
-    <div class="row" ng-show="vP[$index].onc">
-      <div class="col-xs-3">
-        <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">
-<i class="glyphicon glyphicon-menu-down"></i>         {{ vP[$index].Nu }}  {{ vP[$index].Nm }} </a>
-        <br>
-        <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
-        <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
-      </div>
-      <div class="col-xs-9">
-        <a ng-click="pTally('y2p', $index)" role="button" class="btn btn-xs btn-success">2P.y</a>
-        <a ng-click="pTally('y3p', $index)" role="button" class="btn btn-xs btn-success">3P.y</a>
-        <a ng-click="pTally('yft', $index)" role="button" class="btn btn-xs btn-success">FT.y</a>
-        <a ng-click="pTally('ast', $index)" role="button" class="btn btn-xs btn-info">AST</a>
-        <a ng-click="pTally('stl', $index)" role="button" class="btn btn-xs btn-info">STL</a>
-        <a ng-click="pTally('drb', $index)" role="button" class="btn btn-xs btn-success">d.RB</a>
-        <a ng-click="pTally('pf', $index)" role="button" class="btn btn-xs btn-warning">p.F</a>
-        <br>
-        <br>
-        <a ng-click="pTally('x2p', $index)" role="button" class="btn btn-xs btn-warning">2p.x</a>
-        <a ng-click="pTally('x3p', $index)" role="button" class="btn btn-xs btn-warning">3p.x</a>
-        <a ng-click="pTally('xft', $index)" role="button" class="btn btn-xs btn-warning">ft.x</a>
-        <a ng-click="pTally('tov', $index)" role="button" class="btn btn-xs btn-warning">TOV</a>
-        <a ng-click="pTally('blk', $index)" role="button" class="btn btn-xs btn-info">BLK</a>
-        <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.RB</a>
-        <a ng-click="pTally('tf', $index)" role="button" class="btn btn-xs btn-danger">t.F</a>
-    <span class="label label-default" id="Gm">{{Gm.t}}</span>
-        <br>    <br>    <br>
+    <br><span class="label label-success">On Court :</span>
+    <br>
+    <br>
+    <div ng-repeat="xx in xxTimes(vP.length)">
+      <div class="row" ng-show="vP[$index].onc">
+        <div class="col-xs-3">
+          <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">
+            <i class="glyphicon glyphicon-menu-down"></i> {{ vP[$index].Nu }} {{ vP[$index].Nm }} </a>
+          <br>
+          <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
+          <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
+        </div>
+        <div class="col-xs-9">
+          <a ng-click="pTally('y2p', $index)" role="button" class="btn btn-xs btn-success">2P.y</a>
+          <a ng-click="pTally('y3p', $index)" role="button" class="btn btn-xs btn-success">3P.y</a>
+          <a ng-click="pTally('yft', $index)" role="button" class="btn btn-xs btn-success">FT.y</a>
+          <a ng-click="pTally('ast', $index)" role="button" class="btn btn-xs btn-info">AST</a>
+          <a ng-click="pTally('stl', $index)" role="button" class="btn btn-xs btn-info">STL</a>
+          <a ng-click="pTally('drb', $index)" role="button" class="btn btn-xs btn-success">d.RB</a>
+          <a ng-click="pTally('pf', $index)" role="button" class="btn btn-xs btn-warning">p.F</a>
+          <br>
+          <br>
+          <a ng-click="pTally('x2p', $index)" role="button" class="btn btn-xs btn-warning">2p.x</a>
+          <a ng-click="pTally('x3p', $index)" role="button" class="btn btn-xs btn-warning">3p.x</a>
+          <a ng-click="pTally('xft', $index)" role="button" class="btn btn-xs btn-warning">ft.x</a>
+          <a ng-click="pTally('tov', $index)" role="button" class="btn btn-xs btn-warning">TOV</a>
+          <a ng-click="pTally('blk', $index)" role="button" class="btn btn-xs btn-info">BLK</a>
+          <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.RB</a>
+          <a ng-click="pTally('tf', $index)" role="button" class="btn btn-xs btn-danger">t.F</a>
+          <span class="label label-default" id="Gm">{{Gm.t}}</span>
+          <br>
+          <br>
+          <br>
+        </div>
       </div>
     </div>
-</div>
+    <br>
+    <br>
+<div class="well">
+    <h5 class="label label-warning">Bench :</h5>
     <br><br>
-    <h5 class="label label-warning">Bench :</h5><br><br>
-<div ng-repeat="xx in xxTimes(vP.length)">
-    <div class="row" ng-hide="vP[$index].onc">
-      <div class="col-xs-3">
-        <a ng-click="pTgl($index)" role="button" class="btn btn-default btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}} </a>
-        <br>
-        <span class="pull-left badge">Pts: {{ vP[$index].pp }}</span>
-        <span class="pull-left badge">PF: {{ vP[$index].pf }}</span>
-        <br>
-        <span class="pull-left label label-info">fg: {{ vP[$index].rrfg }}</span>
-        <span class="pull-left label label-info">ft: {{ vP[$index].rrft }}</span>
-        <span class="pull-left label label-info">3p: {{ vP[$index].rr3p }}</span>
-        <br>
-        <span class="pull-left label label-default">{{ vClock(vP[$index].totPss) }}</span>
+    <div ng-repeat="xx in xxTimes(vP.length)">
+      <div class="row" ng-hide="vP[$index].onc">
+        <div class="col-sm-13">
+          <a ng-click="pTgl($index)" role="button" class="btn btn-info btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}}
+          <span class="badge"> {{ vP[$index].pp }}</span></a>
+          <span class="btn btn-info badge">F: {{ vP[$index].pf }}</span>
+          <span class="btn btn-xs btn-default">mm: {{ vClock(vP[$index].totPss) }}</span>
+          <span class="btn btn-xs btn-default">2p: {{ vP[$index].y2p }}-{{ vP[$index].x2p }}          
+          <span class="badge">{{ vP[$index].rrfg }}</span></span>
+          <span class="btn btn-xs btn-default">3p: {{ vP[$index].y3p }}-{{ vP[$index].x3p }}          
+          <span class="badge">{{ vP[$index].rr3p }}</span></span>
+          <span class="btn btn-xs btn-default">ft: {{ vP[$index].yft }}-{{ vP[$index].xft }}          
+          <span class="badge">{{ vP[$index].rrft }}</span></span>
+          <span class="btn btn-xs btn-default">ast: {{ vP[$index].ast }} &nbsp;stl: {{ vP[$index].stl }}  &nbsp;d.Rb: {{ vP[$index].drb }}  &nbsp;o.Rb: {{ vP[$index].orb }}   &nbsp;tov: {{ vP[$index].tov }}  &nbsp;blk: {{ vP[$index].blk }}  &nbsp;t.F: {{ vP[$index].tf }}</span>
+          <br><br>
+        </div>
       </div>
-      <div class="col-xs-9">
-        <span class="btn btn-xs btn-default">2p.y:<br> {{ vP[$index].y2p }}</span>
-        <span class="btn btn-xs btn-default">3p.y:<br> {{ vP[$index].y3p }}</span>
-        <span class="btn btn-xs btn-default">ft.y:<br> {{ vP[$index].yft }}</span>
-        <span class="btn btn-xs btn-default">ast:<br> {{ vP[$index].ast }}</span>
-        <span class="btn btn-xs btn-default">stl:<br> {{ vP[$index].stl }}</span>
-        <span class="btn btn-xs btn-default">d.Rb:<br> {{ vP[$index].drb }}</span>
-        <span class="btn btn-xs btn-default">p.F:<br> {{ vP[$index].pf }}</span>
-        <br>
-        <br>
-        <span class="btn btn-xs btn-default">2p.x:<br> {{ vP[$index].x2p }}</span>
-        <span class="btn btn-xs btn-default">3p.x:<br> {{ vP[$index].x3p }}</span>
-        <span class="btn btn-xs btn-default">ft.x:<br> {{ vP[$index].xft }}</span>
-        <span class="btn btn-xs btn-default">tov:<br> {{ vP[$index].tov }}</span>
-        <span class="btn btn-xs btn-default">blk:<br> {{ vP[$index].blk }}</span>
-        <span class="btn btn-xs btn-default">o.Rb:<br> {{ vP[$index].orb }}</span>
-        <span class="btn btn-xs btn-default">t.F:<br> {{ vP[$index].tf }}</span>
-        <br>
-        <br>
-      </div>
-    </div>
+    </div>  <!-- end ng-repeat -->
 </div>
 
-<!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="mainM01" tabindex="-1" role="dialog" aria-labelledby="mainM01Lbl">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -145,13 +139,13 @@
       </div>
     </div>
     <!-- end Modal -->
-<!-- Modal -->
-    <div class="modal fade" id="mainM02" tabindex="-1" role="dialog" aria-labelledby="mainM02Lbl">
+    <!-- Modal -->
+    <div class="modal fade" id="mainM02x" tabindex="-1" role="dialog" aria-labelledby="mainM02xLbl">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="mainM02Lbl">Summary:</h4>
+            <h4 class="modal-title" id="mainM02xLbl">Summary:</h4>
           </div>
           <div class="modal-body">
           </div>
@@ -162,9 +156,38 @@
       </div>
     </div>
     <!-- end Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="mainM02" tabindex="-1" role="dialog" aria-labelledby="mainM02Lbl">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="mainM02Lbl">Bench:</h4>
+          </div>
+          <div class="modal-body">
+    <div ng-repeat="xx in xxTimes(vP.length)">
+      <div class="row" ng-hide="vP[$index].onc">
+        <div class="col-sm-13">
+          <a ng-click="pTgl($index)" role="button" class="btn btn-info btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}}
+          <span class="badge"> {{ vP[$index].pp }}</span></a>
+          <span class="btn btn-info badge">F: {{ vP[$index].pf }}</span>
+          <span class="btn btn-xs btn-default">mm: {{ vClock(vP[$index].totPss) }}</span>
+          <br><br>
+        </div>
+      </div>
+    </div>  <!-- end ng-repeat -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="pull-right col-xs-2 btn btn-primary btn-xs" data-dismiss="modal">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end Modal -->
+
   </div>
   <!-- ctrl1 -->
-<!-- ngAPP -->
+  <!-- ngAPP -->
 
 </body>
 
