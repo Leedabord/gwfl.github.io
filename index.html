@@ -169,9 +169,7 @@
       <div class="row" ng-hide="vP[$index].onc">
         <div class="col-sm-13">
           <a ng-click="pTgl($index)" role="button" class="btn btn-info btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}}
-          <span class="badge"> {{ vP[$index].pp }}</span></a>
-          <span class="btn btn-info badge">F: {{ vP[$index].pf }}</span>
-          <span class="btn btn-xs btn-default">mm: {{ vClock(vP[$index].totPss) }}</span>
+          <span class="badge"> Pts: {{ vP[$index].pp }} F: {{ vP[$index].pf }} mm: {{ vClock(vP[$index].totPss) }}</span></a>
           <br><br>
         </div>
       </div>
