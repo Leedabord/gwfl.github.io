@@ -27,28 +27,21 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-left">
-        <li data-toggle="collapse" data-target="#myNavbar"> <a ng-click="menuTgl('m1')" role="button" ><i class="glyphicon glyphicon-th"></i> Show Stats </a></li>
-        <li data-toggle="collapse" data-target="#myNavbar"> <a ng-click="menuTgl('m2')" role="button" ><i class="glyphicon glyphicon-cog"></i> Setup </a></li>
+        <li data-toggle="collapse" data-target="#myNavbar"> <a ng-click="menuTgl('m1')" role="button" ><i class="glyphicon glyphicon-th"></i> Bench </a></li>
+        <li data-toggle="collapse" data-target="#myNavbar"> <a ng-click="menuTgl('m2')" role="button" ><i class="glyphicon glyphicon-cog"></i> Period </a></li>
       </ul>
       </div>
     </nav>  
     <div id="mainDiv1" class="container">
-      <div class="row">
-        <div class="col-sm-3">
-          <h6>Redondo: <span class="btn btn-lg btn-danger">{{vGH.pp}}</span></h6></div>
-        <div class="col-sm-4">
-          <h6>Opponent: <span class="btn btn-lg btn-default">{{vGV.pp}}</span></h6>
-          <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-sm btn-default">2P</a>
+          Opponent: <span class="btn btn-lg btn-default">{{vGV.pp}}</span>
+        <span class="label">....</span>  Redondo: <span class="btn btn-lg btn-danger">{{vGH.pp}}</span>
+        <span class="label">..</span>  <span class="pull-right btn btn-lg navbar-default">{{Gm.vClock}}</span><br><br><br>      
+        <br>  <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-sm btn-default">2P</a>
           <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-sm btn-default">3P</a>
           <a ng-click="pTally('vft', 0)" role="button" class="btn btn-sm btn-default">1P</a>
-        </div>
-        <div class="col-sm-4">
-        <span class="pull-right btn btn-lg navbar-default">{{Gm.vClock}}</span>
-<br><br><br>      <a id="clear" ng-click="resetGame()" role="button" class="pull-right btn btn-xs btn-default">CLEAR</a>
-      <a id="stop" ng-click="stopGame()" role="button" class="pull-right btn btn-xs btn-danger">STOP</a>
-      <a id="start" ng-click="inGame()" role="button" class="pull-right btn btn-xs btn-success">START</a>
-        </div>
-      </div>
+        <a id="clear" ng-click="resetGame()" role="button" class="pull-right btn btn-xs btn-default">CLEAR</a>
+        <a id="stop" ng-click="stopGame()" role="button" class="pull-right btn btn-xs btn-danger">STOP</a>
+        <a id="start" ng-click="inGame()" role="button" class="pull-right btn btn-xs btn-success">START</a>
     </div>
     <!-- end nav mainDiv1 -->
     <br><span class="label label-success">On Court :</span>
@@ -90,22 +83,18 @@
     <br>
     <br>
 <div class="well">
-    <h5 class="label label-warning">Bench :</h5>
+    <h5 class="label label-default">Player Stats :</h5>
     <br><br>
     <div ng-repeat="xx in xxTimes(vP.length)">
       <div class="row" ng-hide="vP[$index].onc">
         <div class="col-sm-13">
           <a ng-click="pTgl($index)" role="button" class="btn btn-info btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}}
-          <span class="badge"> {{ vP[$index].pp }}</span></a>
-          <span class="btn btn-info badge">F: {{ vP[$index].pf }}</span>
-          <span class="btn btn-xs btn-default">mm: {{ vClock(vP[$index].totPss) }}</span>
-          <span class="btn btn-xs btn-default">2p: {{ vP[$index].y2p }}-{{ vP[$index].x2p }}          
-          <span class="badge">{{ vP[$index].rrfg }}</span></span>
-          <span class="btn btn-xs btn-default">3p: {{ vP[$index].y3p }}-{{ vP[$index].x3p }}          
-          <span class="badge">{{ vP[$index].rr3p }}</span></span>
-          <span class="btn btn-xs btn-default">ft: {{ vP[$index].yft }}-{{ vP[$index].xft }}          
-          <span class="badge">{{ vP[$index].rrft }}</span></span>
-          <span class="btn btn-xs btn-default">ast: {{ vP[$index].ast }} &nbsp;stl: {{ vP[$index].stl }}  &nbsp;d.Rb: {{ vP[$index].drb }}  &nbsp;o.Rb: {{ vP[$index].orb }}   &nbsp;tov: {{ vP[$index].tov }}  &nbsp;blk: {{ vP[$index].blk }}  &nbsp;t.F: {{ vP[$index].tf }}</span>
+          <span class="badge">Pts: {{ vP[$index].pp }}</span><span class="badge">F: {{ vP[$index].pf }}</span></a>
+          <span class="btn btn-xs btn-default">mm {{ vClock(vP[$index].totPss) }} &nbsp;&nbsp; FG:  {{ vP[$index].y2p }}-{{ vP[$index].x2p }} [{{ vP[$index].rrfg }}%]
+           &nbsp;&nbsp; 3p: {{ vP[$index].y3p }}-{{ vP[$index].x3p }} [{{ vP[$index].rr3p }}%]
+           &nbsp;&nbsp; FT: {{ vP[$index].yft }}-{{ vP[$index].xft }} [{{ vP[$index].rrft }}%] 
+           <br>ast: {{ vP[$index].ast }} &nbsp;stl: {{ vP[$index].stl }}  &nbsp;tov: {{ vP[$index].tov }}
+           &nbsp;blk: {{ vP[$index].blk }}  &nbsp;d.Rb: {{ vP[$index].drb }}  &nbsp;o.Rb: {{ vP[$index].orb }} &nbsp;t.F: {{ vP[$index].tf }}</span>
           <br><br>
         </div>
       </div>
@@ -165,14 +154,13 @@
             <h4 class="modal-title" id="mainM02Lbl">Bench:</h4>
           </div>
           <div class="modal-body">
-    <div ng-repeat="xx in xxTimes(vP.length)">
-      <div class="row" ng-hide="vP[$index].onc">
-        <div class="col-sm-13">
+    <div class="container" ng-repeat="xx in xxTimes(vP.length)">
+      <span ng-hide="vP[$index].onc">
           <a ng-click="pTgl($index)" role="button" class="btn btn-info btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}}
-          <span class="badge"> Pts: {{ vP[$index].pp }} F: {{ vP[$index].pf }} mm: {{ vClock(vP[$index].totPss) }}</span></a>
-          <br><br>
-        </div>
-      </div>
+          <span class="badge">Pts: {{ vP[$index].pp }}</span>
+          <span class="badge">f: {{ vP[$index].pf }}</span>
+          <span class="badge"> {{ vClock(vP[$index].totPss) }} </span></a>
+      </span><br><br>
     </div>  <!-- end ng-repeat -->
           </div>
           <div class="modal-footer">
