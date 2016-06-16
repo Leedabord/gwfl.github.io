@@ -33,22 +33,23 @@
       </div>
     </nav>  
     <div id="mainDiv1" class="container">
-          Opponent: <span class="btn btn-lg btn-default">{{vGV.pp}}</span>
-        <span class="label">....</span>  Redondo: <span class="btn btn-lg btn-danger">{{vGH.pp}}</span>
-        <span class="label">..</span>  <span class="pull-right btn btn-lg navbar-default">{{Gm.vClock}}</span><br><br><br>      
-        <br>  <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-sm btn-default">2P</a>
-          <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-sm btn-default">3P</a>
-          <a ng-click="pTally('vft', 0)" role="button" class="btn btn-sm btn-default">1P</a>
-        <a id="clear" ng-click="resetGame()" role="button" class="pull-right btn btn-xs btn-default">CLEAR</a>
-        <a id="stop" ng-click="stopGame()" role="button" class="pull-right btn btn-xs btn-danger">STOP</a>
-        <a id="start" ng-click="inGame()" role="button" class="pull-right btn btn-xs btn-success">START</a>
+      <span class="label label-default">Track Opponent:</span>        
+      <a ng-click="pTally('v2p', 0)" role="button" class="btn btn-sm btn-default">2P</a>
+      <a ng-click="pTally('v3p', 0)" role="button" class="btn btn-sm btn-default">3P</a>
+      <a ng-click="pTally('vft', 0)" role="button" class="btn btn-sm btn-default">1P</a>
+      <a id="clear" ng-click="resetGame()" role="button" class="pull-right btn btn-xs btn-default">CLEAR</a>
+      <a id="stop" ng-click="stopGame()" role="button" class="pull-right btn btn-xs btn-danger">STOP</a>
+      <a id="start" ng-click="inGame()" role="button" class="pull-right btn btn-xs btn-success">START</a>
+    <br><br>  Opponent: <span class="btn btn-lg btn-default">{{vGV.pp}}</span>
+      <span class="label">....</span>  Redondo: <span class="btn btn-lg btn-danger">{{vGH.pp}}</span>
+      <span class="label">..</span>  <span class="pull-right btn btn-lg navbar-default">{{Gm.vClock}}</span>
     </div>
     <!-- end nav mainDiv1 -->
     <br><span class="label label-success">On Court :</span>
     <br>
-    <br>
     <div ng-repeat="xx in xxTimes(vP.length)">
       <div class="row" ng-show="vP[$index].onc">
+          <br>
         <div class="col-xs-3">
           <a ng-click="pTgl($index)" role="button" class="btn btn-danger btn-md">
             <i class="glyphicon glyphicon-menu-down"></i> {{ vP[$index].Nu }} {{ vP[$index].Nm }} </a>
@@ -74,10 +75,8 @@
           <a ng-click="pTally('orb', $index)" role="button" class="btn btn-xs btn-info">o.RB</a>
           <a ng-click="pTally('tf', $index)" role="button" class="btn btn-xs btn-danger">t.F</a>
           <span class="label label-default" id="Gm">{{Gm.t}}</span>
-          <br>
-          <br>
-          <br>
         </div>
+          <br>
       </div>
     </div>
     <br>
@@ -156,11 +155,11 @@
           <div class="modal-body">
     <div class="container" ng-repeat="xx in xxTimes(vP.length)">
       <span ng-hide="vP[$index].onc">
-          <a ng-click="pTgl($index)" role="button" class="btn btn-info btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}}
+<br>      <a ng-click="pTgl($index)" role="button" class="btn btn-info btn-md"><i class="glyphicon glyphicon-menu-up"></i> {{vP[$index].Nu}} {{vP[$index].Nm}}
           <span class="badge">Pts: {{ vP[$index].pp }}</span>
           <span class="badge">f: {{ vP[$index].pf }}</span>
           <span class="badge"> {{ vClock(vP[$index].totPss) }} </span></a>
-      </span><br><br>
+<br>  </span>
     </div>  <!-- end ng-repeat -->
           </div>
           <div class="modal-footer">
