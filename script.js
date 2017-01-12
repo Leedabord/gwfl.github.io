@@ -58,7 +58,7 @@ ionApp.run( function ($rootScope, $http, DBservice) {
 
   DBservice.getMeta;
   DBservice.getContact();
-  $rootScope.ngrContact = DBservice.ngrContact().get({id: '58429a9f2f81e47700000002'}); // 58429a9f2f81e47700000002
+  $rootScope.ngrContact = DBservice.ngrContact().get({id: '5630807cb153815f00000058'}); // 58429a9f2f81e47700000002
   $rootScope.prod = DBservice.getAll;
 });
 
