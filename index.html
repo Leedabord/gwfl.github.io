@@ -68,8 +68,13 @@
     <ion-view view-title="Main Page">
       <ion-content>
   <h2> </h2>
- ngrContact: {{ ngrContact }}
-<h2> </h2>
+<div class="card">
+   <div class="item item-text-wrap">
+    {{ngrContact["first-name"]}} {{ngrContact["last-name"]}} mailto:{{ngrContact.email}}  
+  <br> id:{{ngrContact._id}} <br> {{ ngrContact.comment }}  
+  <br><img src="https://rdb-simpledb.restdb.io/media/{{ ngrContact.photo[0] }}?s=t">
+     </div>
+</div><h2> </h2>
 <div class="row">  <div class="col">
   <a  href="#/event/getOne"  class="item item-icon-left">
   <i class="icon ion-edit"></i> button 1 </a>
@@ -90,7 +95,8 @@
   <ion-item ng-repeat="cc in allContacts">
     {{cc["first-name"]}} {{cc["last-name"]}} mailto:{{cc.email}}  
   <br> id:{{cc._id}} {{ cc.comment }} 
-  </ion-item>
+<br><img src="https://rdb-simpledb.restdb.io/media/{{ cc.photo }}[0]?s=t">  
+</ion-item>
 </ion-list>
 
       </ion-content>
