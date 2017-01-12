@@ -71,7 +71,7 @@ ionApp.controller('MainCtrl', function($rootScope, $scope, $ionicSideMenuDelegat
 ionApp.factory ('DBservice', function ($rootScope, $http, $resource) {
 
 var _getContact = function () {
-  $http.get('https://rdb-simpledb.restdb.io/rest/contact?&q={comment: hello}&sort=_changed&dir=-1')
+  $http.get('https://rdb-simpledb.restdb.io/rest/contact?&sort=_changed&dir=-1')
    .success(function (jsonData) {
      $rootScope.allContacts = jsonData;
   });
